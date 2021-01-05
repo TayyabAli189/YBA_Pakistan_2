@@ -5,13 +5,13 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                  {{--  <div class="col-sm-6">
                         <a class="btn btn-primary" href="{{route('create.event')}}">Add Event</a>
-                    </div>
+                    </div>--}}
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Event</li>
+                            <li class="breadcrumb-item active">Contact</li>
                         </ol>
                     </div>
                 </div>
@@ -47,29 +47,20 @@
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 80px;">Created Date
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 100px;">Event Name
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 100px;"> Name
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 160px;">Event Description
-                                                </th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 100px;">Images
-                                                </th>
-                                                {{--<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 100px;">Status
-                                                </th>--}}
-                                                <th style="width: 70px;">Edit</th>
-                                                <th style="width: 70px;">Delete</th>
-                                            </tr>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 120px;">Email</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 110px;">Subject</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 160px;">Message</th>
                                             </thead>
                                             <tbody>
-                                            @foreach($events as $event)
+                                            @foreach($contacts as $contact)
                                                 <tr role="row" class="odd">
-                                                    <td class="sorting_1">{{date('d-M-Y', strtotime($event->created_at))}}</td>
-                                                    <td>{{$event->event_name}}</td>
-                                                    <td>{{$event->discription}}</td>
-                                                    <td><img height="100px" src="{{asset('images/'.$event->image)}}"></td>
-                                                  {{--  <td><a href="" class="{{($event->status == 'true') ? 'btn btn-danger' : 'btn btn-success'}}">{{($event->status == 'true') ? 'De-Active' : 'Active'}}</a>
-                                                    </td>--}}
-                                                    <td><a href="{{route('edit.event',$event->id)}}" class="btn btn-primary"><i class="far fa-edit"></i></a></td>
-                                                    <td> <a href="{{route('delete.event',$event->id)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a> </td>
+                                                    <td class="sorting_1">{{date('d-M-Y', strtotime($contact->created_at))}}</td>
+                                                    <td>{{$contact->name}}</td>
+                                                    <td>{{$contact->email}}</td>
+                                                    <td>{{$contact->subject}}</td>
+                                                    <td>{{$contact->message}}</td>
                                                     @endforeach
                                                 </tr>
                                             </tbody>
@@ -78,13 +69,33 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-5">
-                                    </div>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                            <ul class="pagination">
-                                               <li class="paginate_button page-Actionsitem active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">{{$events->links()}}</a></li>
-                                            </ul>
+                                        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                     {{--   <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                            <ul class="pagination">
+                                                <li>{{$contacts->links()}}</li>
+                                            </ul>
+                                        </div>--}}
+
+                                        <div id="myDIV">
+                                            <button class="btn">{{$contacts->links()}}</button>
+
+                                        </div>
+                                        <script>
+                                            // Add active class to the current button (highlight it)
+                                            var header = document.getElementById("myDIV");
+                                            var btns = header.getElementsByClassName("btn");
+                                            for (var i = 0; i < btns.length; i++) {
+                                                btns[i].addEventListener("click", function() {
+                                                    var current = document.getElementsByClassName("active");
+                                                    current[0].className = current[0].className.replace(" active", "");
+                                                    this.className += " active";
+                                                });
+                                            }
+                                        </script>
+
                                     </div>
                                 </div>
                             </div>
@@ -103,4 +114,8 @@
             display: none;
         }
     </style>
+
 @endsection
+
+
+

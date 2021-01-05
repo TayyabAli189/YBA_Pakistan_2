@@ -17,7 +17,7 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = $this->event->getAllEvents();
+        $events = $this->event->paginate(5);
         return view('backend.event.index',compact('events'));
     }
 

@@ -23,8 +23,7 @@ Route::get('/event', [\App\Http\Controllers\Frontend\EventController::class,'eve
 Route::get('detail/{id}', [\App\Http\Controllers\Frontend\EventController::class,'detail'])->name('frontend.event.detail');
 
 //Route::get('/newpage', [\App\Http\Controllers\Frontend\NewPageController::class,'newpage'])->name('frontend.event.newpage');
-Route::get('/cotact us',[\App\Http\Controllers\Frontend\ContactUsController::class,'contact_us'])->name('frontend.contact.contact');
-
+Route::get('/contactus',[\App\Http\Controllers\Frontend\ContactUsController::class,'contact_us'])->name('frontend.contact.contact');
 
 Route::middleware(['auth'])->group(function () {
 // Backend Events
@@ -35,6 +34,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit/event/{id}', [App\Http\Controllers\Backend\EventController::class,'edit'])->name('edit.event');
     Route::post('update/event/{id}', [App\Http\Controllers\Backend\EventController::class,'update'])->name('update.event');
 });
+
+
+Route::get('/contact', [\App\Http\Controllers\Backend\ContactController::class,'index'])->name('listing.contact');
+Route::get('add/contact',[\App\Http\Controllers\Backend\ContactController::class,'create'])->name('create.contact');
+Route::post('add/contact',[\App\Http\Controllers\Backend\ContactController::class,'store'])->name('store.contact');
+
 
 Auth::routes();
 

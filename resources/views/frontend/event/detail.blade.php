@@ -24,7 +24,7 @@
     </div>
 
     <div class="event_name">
-        <div class="desc">{{ucwords($event->event_name)}}</div>
+        <div class="">{{ucwords($event->event_name)}}</div>
     </div>
         <div class="_date">
             {{date('d-M-Y', strtotime($event->created_at))}}

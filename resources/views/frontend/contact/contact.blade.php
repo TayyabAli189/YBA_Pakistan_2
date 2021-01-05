@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="page-heading">
-                    <h1>Contct Us</h1>
+                    <h1>Contact Us</h1>
 
                 </div>
             </div>
@@ -68,7 +68,10 @@
                         <div class="col-md-9">
                             <div class="contact-wrap w-100 p-md-5 p-4">
                                 <h3 class="mb-4">Contact Us</h3>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+
+                                <form method="post" id="contactForm" name="contactForm" class="contactForm" action="{{route('store.contact')}}" enctype="multipart/form-data">
+                                   @csrf
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
